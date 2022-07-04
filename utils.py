@@ -31,7 +31,7 @@ def get_password_hash(password):
 
 def get_user(user_name):
     with get_db_session() as db_session:
-        return db_session.query(User).filter_by(user_name=user_name).first()
+        return db_session.query(User).filter_by(email=user_name).first()
 
 
 def authenticate_user(username: str, password: str):
