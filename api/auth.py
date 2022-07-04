@@ -37,7 +37,7 @@ def register(data: RegisterUserSchema):
 
 
 @auth_router.post('/login', response_model=TokenResponseSchema)
-def login(user_data: LoginSchema):
+def login(user_data: OAuth2PasswordRequestForm = Depends()):
     existing_user = authenticate_user(user_data.username, user_data.password)
     if not existing_user:
         raise HTTPException(
