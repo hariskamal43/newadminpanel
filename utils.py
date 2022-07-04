@@ -31,12 +31,12 @@ def get_password_hash(password):
 
 def get_user(user_name):
     with get_db_session() as db_session:
-        return db_session.query(User).filter_by(email=user_name).first()
+        return db_session.query(User).filter_by(user_name=user_name).first()
 
 
 def authenticate_user(username: str, password: str):
     with get_db_session() as db_session:
-        user: User = db_session.query(User).filter_by(user_name=username).first()
+        user: User = db_session.query(User).filter_by(email=username).first()
         if not user:
             return False
         if not verify_password(password, user.hash_password):
